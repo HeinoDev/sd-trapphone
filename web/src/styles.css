@@ -658,18 +658,6 @@ button {
   text-align: left;
 }
 
-.hs-mic {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  margin-left: -2px;
-  border-radius: 50%;
-  background: #05070a;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
 /* ───────── The display ───────── */
 
 .screen {

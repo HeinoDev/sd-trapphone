@@ -69,7 +69,6 @@ export default function Handset({ shell, children }: { shell: string; children: 
           ))}
         </div>
 
-        <div className="hs-mic" />
       </div>
     </div>
   );
