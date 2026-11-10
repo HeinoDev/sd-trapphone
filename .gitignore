@@ -4,3 +4,6 @@ node_modules/
 
 # Composed from tools/art/prop_*.png by tools/make_textures.py
 tools/art/tex_*.png
+
+__pycache__/
+*.pyc
