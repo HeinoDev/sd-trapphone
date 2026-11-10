@@ -522,13 +522,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   color: var(--key-ink);
+  border: 1px solid rgba(0, 0, 0, 0.38);
   background: linear-gradient(180deg, var(--key-a), var(--key-b));
   box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.55),
-    0 3px 5px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.18);
+    0 2px 0 rgba(0, 0, 0, 0.58),
+    0 3px 4px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.26);
   transition: transform 60ms, box-shadow 60ms, filter 60ms;
 }
 
@@ -588,9 +590,20 @@ button {
   align-self: center;
   width: 94px;
   height: 94px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.72);
   border-radius: 50%;
-  background: conic-gradient(from 210deg, var(--trim-a), var(--trim-b), var(--trim-a), var(--trim-b), var(--trim-a));
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  background: radial-gradient(circle at 38% 28%, #626a74, #3d444d 58%, #242930 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.48), inset 0 2px 5px rgba(0, 0, 0, 0.62), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.dpad::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 45deg, rgba(0, 0, 0, 0.36) 0deg 0.7deg, rgba(255, 255, 255, 0.1) 0.7deg 1.4deg, transparent 1.4deg 90deg);
+  pointer-events: none;
 }
 
 .dpad-dir {
@@ -600,14 +613,22 @@ button {
   justify-content: center;
   width: 34px;
   height: 26px;
-  color: #232a36;
-  border-radius: 6px;
+  color: #20252b;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dpad-dir svg {
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45));
 }
 
 .dpad-dir:active,
 .dpad-dir.key-down {
-  color: #000;
-  background: rgba(0, 0, 0, 0.14);
+  color: #101419;
+  transform: translateY(1px);
+  filter: brightness(0.78);
 }
 
 .dpad-up { top: 2px; left: 30px; }
@@ -617,10 +638,22 @@ button {
 
 .dpad-ok {
   position: absolute;
-  inset: 26px;
+  inset: 34px;
+  border: 2px solid rgba(10, 12, 15, 0.8);
   border-radius: 50%;
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  color: #f1f3f5;
+  background: linear-gradient(145deg, #727a84, #353b43 72%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -2px 2px rgba(0, 0, 0, 0.28);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.dpad-ok:active,
+.dpad-ok.key-down {
+  transform: translateY(1px);
+  filter: brightness(1.08);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .hs-pad {
@@ -630,14 +663,30 @@ button {
   right: 34px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px 9px;
+  gap: 10px 11px;
+  isolation: isolate;
+}
+
+.hs-pad::before {
+  content: '';
+  position: absolute;
+  inset: -7px -6px;
+  z-index: 0;
+  border-radius: 18px;
+  background: rgba(18, 22, 28, 0.2);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.34), 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hs-pad .key {
+  z-index: 1;
 }
 
 .key-digit {
+  flex-direction: column;
   height: 32px;
-  gap: 5px;
-  border-radius: 15px / 14px;
-  text-shadow: 0 0 5px var(--led);
+  gap: 1px;
+  border-radius: 12px / 11px;
+  text-shadow: none;
 }
 
 /* The middle column sits a touch lower: the keypad follows the curve of the chin. */
@@ -646,16 +695,20 @@ button {
 }
 
 .key-num {
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1;
 }
 
 .key-abc {
-  font-size: 6.5px;
-  letter-spacing: 0.08em;
-  opacity: 0.75;
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
   min-width: 20px;
-  text-align: left;
+  text-align: center;
 }
 
 .hs-mic {
@@ -692,8 +745,8 @@ button {
   display: flex;
   flex-direction: column;
   font-family: 'Trap Digits', 'Pixelify Sans', system-ui, sans-serif;
-  font-size: 15px;
-  line-height: 1.15;
+  font-size: 16px;
+  line-height: 1.2;
   color: var(--ink);
   -webkit-font-smoothing: none;
 }
@@ -805,6 +858,7 @@ button {
 .frame-title {
   flex: none;
   padding: 3px 7px 4px;
+  line-height: 1.25;
   font-weight: 600;
   color: #fff;
   background: linear-gradient(180deg, var(--title-a), var(--title-b));
@@ -871,6 +925,7 @@ button {
   width: 100%;
   min-height: 24px;
   padding: 3px 7px;
+  line-height: 1.2;
   box-sizing: border-box;
   text-align: left;
   border-bottom: 1px solid var(--panel-2);
@@ -909,7 +964,8 @@ button {
 .row-label { font-weight: 600; }
 
 .row-sub {
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.2;
   opacity: 0.72;
 }
 
@@ -1159,7 +1215,8 @@ button {
   text-align: center;
 }
 
-.pix { display: block; image-rendering: pixelated; }
+/* Pixel-art glyphs read low when their bounding boxes are mathematically centred. */
+.pix { display: block; image-rendering: pixelated; transform: translateY(-1px); }
 
 /* Toast, confirm, boot, peek */
 

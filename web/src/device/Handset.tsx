@@ -22,8 +22,8 @@ function KeyButton({ k, className, label, children }: { k: Key; className: strin
 }
 
 const Arrow = ({ turn }: { turn: number }) => (
-  <svg width="10" height="7" viewBox="0 0 10 7" style={{ transform: `rotate(${turn}deg)` }} aria-hidden="true">
-    <path d="M5 0 10 7H0z" fill="currentColor" />
+  <svg width="12" height="9" viewBox="0 0 12 9" style={{ transform: `rotate(${turn}deg)` }} aria-hidden="true">
+    <path d="M6 0 12 9H0z" fill="currentColor" />
   </svg>
 );
 
