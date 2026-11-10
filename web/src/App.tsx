@@ -12,10 +12,20 @@ import {
 } from '@/store/phone';
 import type { Clock, MessagePayload, OfferPayload, PhoneState, Setup } from '@/store/types';
 
+/** The website's browser demo (`vite build --mode demo`): the handset alone, on sample data. */
+const DEMO = import.meta.env.MODE === 'demo';
+
 /** Fit the handset to the screen: it takes about seven tenths of the screen height at any resolution. */
 function useStageScale(): void {
   useEffect(() => {
-    const fit = () => document.documentElement.style.setProperty('--s', String(Math.min(1.5, window.innerHeight / 1000)));
+    const fit = () => {
+      // In game the handset takes about seven tenths of the screen height. In the demo it is
+      // the whole page, so it fills whatever frame it is given.
+      const scale = DEMO
+        ? Math.min(window.innerHeight / 740, window.innerWidth / 330)
+        : Math.min(1.5, window.innerHeight / 1000);
+      document.documentElement.style.setProperty('--s', String(scale));
+    };
     fit();
     window.addEventListener('resize', fit);
     return () => window.removeEventListener('resize', fit);
@@ -74,7 +84,7 @@ export default function App() {
 
     // The red key: from any screen it goes back to the clock, and from the clock it puts the phone away.
     setGlobalHandler(() => {
-      if (usePhone.getState().stack.length > 1) {
+      if (usePhone.getState().stack.length > 1 || DEMO) {
         goHome();
         return;
       }
@@ -107,6 +117,31 @@ export default function App() {
       return;
     }
 
+    // The website's demo: the handset alone in the middle of a clear page, idle, in the colour
+    // the address asks for. The page around it can change the colour by posting a message.
+    if (DEMO) {
+      const wanted = new URLSearchParams(window.location.search).get('shell') ?? 'graphite';
+      const fresh = (shell: string) => ({
+        ...MOCK_STATE,
+        phone: { ...MOCK_STATE.phone, shell },
+        hustle: { ...MOCK_STATE.hustle!, mode: 'idle' as const },
+      });
+
+      openPhone(fresh(wanted), MOCK_SETUP, { h: 21, m: 47 });
+
+      const onMessage = (event: MessageEvent) => {
+        const data = event.data as { type?: string; shell?: string } | null;
+        const current = usePhone.getState().state;
+        if (event.origin !== window.location.origin || data?.type !== 'trap:shell' || !current) return;
+        if (typeof data.shell === 'string' && /^[a-z]+$/.test(data.shell)) {
+          patchState({ phone: { ...current.phone, shell: data.shell } });
+        }
+      };
+
+      window.addEventListener('message', onMessage);
+      return () => window.removeEventListener('message', onMessage);
+    }
+
     // Working on the page in a browser: a game-ish backdrop and the mock phone, already open.
     document.body.style.background = 'linear-gradient(160deg, #3b4a5c, #1b2028)';
     openPhone(MOCK_STATE, MOCK_SETUP, { h: 21, m: 47 });
@@ -121,7 +156,7 @@ export default function App() {
   }
 
   return (
-    <div className={`stage${open ? ' stage-open' : peek ? ' stage-peek' : ''}`}>
+    <div className={`stage${DEMO ? ' stage-demo' : ''}${open ? ' stage-open' : peek ? ' stage-peek' : ''}`}>
       <Handset shell={shell}>
         <Display />
       </Handset>

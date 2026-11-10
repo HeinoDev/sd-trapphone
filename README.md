@@ -2,7 +2,17 @@
 
 # sd-trapphone
 
-<img width="960" alt="sd-trapphone banner: the ten handset colours in a row" src="docs/previews/sd-trapphone-banner.webp">
+<a href="https://fivem.samueldev.shop/trapphone">
+  <img width="960" alt="sd-trapphone banner: the ten handset colours in a row" src="docs/previews/sd-trapphone-banner.webp">
+</a>
+
+### Browser demo
+
+[![Open the live demo](https://img.shields.io/badge/%E2%96%B6%20%20OPEN%20THE%20LIVE%20DEMO-fivem.samueldev.shop%2Ftrapphone-F0E155?style=for-the-badge&labelColor=101114&logoColor=F0E155)](https://fivem.samueldev.shop/trapphone)
+
+The handset runs here with sample data. Pick a colour, start serving from Hustle and answer the texts that come in. Nothing to install.
+
+<sub>[fivem.samueldev.shop/trapphone](https://fivem.samueldev.shop/trapphone)</sub>
 
 ---
 
@@ -15,7 +25,7 @@ sd-trapphone is a keypad burner phone for FiveM that runs a street business. Pla
 ![Inventory](https://img.shields.io/badge/Inventory-auto--detected-3b82f6)
 ![Works with](https://img.shields.io/badge/Works%20with-sd--phone-3b82f6)
 
-[**Store**](https://fivem.samueldev.shop) · [**Discord**](https://discord.gg/FzPehMQaBQ)
+[**Live demo**](https://fivem.samueldev.shop/trapphone) · [**Store**](https://fivem.samueldev.shop) · [**Discord**](https://discord.gg/FzPehMQaBQ)
 
 **Works together:** [**sd-phone**](https://github.com/Samuels-Development/sd-phone) · **sd-trapphone** · [**sd-tablet**](https://github.com/Samuels-Development/sd-tablet) · [**sd-computers**](https://github.com/Samuels-Development/sd-computers)
 
@@ -111,8 +121,9 @@ The built page ships in `web/build`. To change it:
 ```bash
 cd web
 npm ci
-npm run dev      # the handset in a browser, with sample data
-npm run build
+npm run dev         # the handset in a browser, with sample data
+npm run build       # what the game serves (web/build)
+npm run build:demo  # the website's demo (web/build-demo): the handset alone, with a pretended street
 ```
 
 ### Rebuilding the props

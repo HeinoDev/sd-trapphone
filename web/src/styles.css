@@ -73,6 +73,18 @@ button {
   }
 }
 
+/* The browser demo: the handset in the middle of the page instead of the corner of a game. */
+.stage-demo,
+.stage-demo.stage-open {
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(var(--s, 1));
+  transition: none;
+}
+
 /* ───────── Shells (faceplates) ───────── */
 
 .handset {

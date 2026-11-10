@@ -1,4 +1,5 @@
 import type { PhoneState, Reply, Setup } from '@/store/types';
+import { demoReply } from './demo';
 
 // Stand-in data for working on the page in a plain browser (npm run dev). Never used in game.
 
@@ -131,6 +132,9 @@ export const MOCK_STATE: PhoneState = {
 };
 
 export function mockReply(name: string, body: unknown): Reply {
+  const played = demoReply(name, body);
+  if (played) return played;
+
   const b = (body ?? {}) as { action?: string; args?: Record<string, unknown> };
 
   if (name === 'trap:contact:action') {
