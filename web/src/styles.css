@@ -148,7 +148,7 @@ button {
   --key-ink: #e9eef7;
   --led: #9ad0ff;
   --brand: #1a1f29;
-  --overlay: linear-gradient(100deg, transparent 0 22%, rgba(255, 255, 255, 0.55) 30%, transparent 38% 58%, rgba(255, 255, 255, 0.3) 66%, transparent 74%);
+  --overlay: linear-gradient(100deg, transparent 0 22%, rgba(255, 255, 255, 0.2) 30%, transparent 38% 58%, rgba(255, 255, 255, 0.1) 66%, transparent 74%);
 }
 
 .shell-bling {
@@ -162,7 +162,7 @@ button {
   --key-ink: #ffe9a3;
   --led: #fff0b0;
   --brand: #3a2703;
-  --overlay: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, rgba(255, 255, 255, 0.25) 1.6px, transparent 2.4px) 0 0 / 11px 11px;
+  --overlay: radial-gradient(circle, rgba(255, 255, 255, 0.42) 0 1px, rgba(255, 255, 255, 0.12) 1.6px, transparent 2.4px) 0 0 / 11px 11px;
 }
 
 .shell-pearl {
@@ -228,26 +228,21 @@ button {
   border-radius: 74px 74px 96px 96px / 60px 60px 88px 88px;
   background:
     var(--overlay),
-    linear-gradient(98deg, var(--shell-hi) 0%, var(--shell-a) 16%, var(--shell-a) 58%, var(--shell-b) 100%);
+    linear-gradient(105deg, color-mix(in srgb, var(--shell-hi) 35%, var(--shell-a)) 0%, var(--shell-a) 24%, var(--shell-a) 72%, color-mix(in srgb, var(--shell-a) 58%, var(--shell-b)) 100%);
   box-shadow:
-    inset 0 2px 1px rgba(255, 255, 255, 0.55),
+    inset 0 2px 1px rgba(255, 255, 255, 0.28),
     inset 0 -10px 18px rgba(0, 0, 0, 0.35),
-    inset 7px 0 12px rgba(255, 255, 255, 0.18),
+    inset 7px 0 12px rgba(255, 255, 255, 0.08),
     inset -9px 0 14px rgba(0, 0, 0, 0.3);
 }
 
-/* The chrome band that runs round the edge of the faceplate. */
+/* A narrow molded seam around the faceplate. */
 .hs-body::before {
   content: '';
   position: absolute;
   inset: 7px;
   border-radius: 68px 68px 90px 90px / 54px 54px 82px 82px;
-  border: 2px solid transparent;
-  background: linear-gradient(160deg, var(--trim-a), var(--trim-b) 45%, var(--trim-a) 70%, var(--trim-b)) border-box;
-  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
-  opacity: 0.75;
+  border: 1px solid rgba(20, 22, 25, 0.25);
   pointer-events: none;
 }
 
@@ -293,11 +288,13 @@ button {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
-  color: #c7cedb;
-  text-shadow: 0 0 6px rgba(160, 200, 255, 0.35);
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+  color: #aeb4be;
+  text-shadow: none;
 }
 
 .hs-screen {
@@ -318,10 +315,12 @@ button {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 7px;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
-  color: #6c7482;
+  font-family: Arial, sans-serif;
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: #777e88;
 }
 
 /* ───────── The back of the handset (only ever drawn for the prop's texture) ───────── */
@@ -397,12 +396,14 @@ button {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 22px;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
   color: var(--brand);
-  opacity: 0.85;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.35);
+  opacity: 0.72;
+  text-shadow: none;
 }
 
 .hs-back-small {
@@ -411,9 +412,10 @@ button {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 7px;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
+  font-family: Arial, sans-serif;
+  font-size: 6px;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
   color: var(--brand);
   opacity: 0.6;
 }
@@ -423,11 +425,11 @@ button {
 .handset-back .hs-body {
   background:
     var(--overlay),
-    linear-gradient(262deg, var(--shell-hi) 0%, var(--shell-a) 16%, var(--shell-a) 58%, var(--shell-b) 100%);
+    linear-gradient(255deg, color-mix(in srgb, var(--shell-hi) 35%, var(--shell-a)) 0%, var(--shell-a) 24%, var(--shell-a) 72%, color-mix(in srgb, var(--shell-a) 58%, var(--shell-b)) 100%);
   box-shadow:
-    inset 0 2px 1px rgba(255, 255, 255, 0.55),
+    inset 0 2px 1px rgba(255, 255, 255, 0.28),
     inset 0 -10px 18px rgba(0, 0, 0, 0.35),
-    inset -7px 0 12px rgba(255, 255, 255, 0.18),
+    inset -7px 0 12px rgba(255, 255, 255, 0.08),
     inset 9px 0 14px rgba(0, 0, 0, 0.3);
 }
 
@@ -454,14 +456,14 @@ button {
 .stage-flat .hs-body {
   background:
     var(--overlay),
-    linear-gradient(98deg, var(--shell-a) 0%, var(--shell-a) 62%, color-mix(in srgb, var(--shell-a) 62%, var(--shell-b)) 100%);
+    linear-gradient(98deg, var(--shell-a) 0%, var(--shell-a) 82%, color-mix(in srgb, var(--shell-a) 78%, var(--shell-b)) 100%);
   box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.16);
 }
 
 .stage-flat .handset-back .hs-body {
   background:
     var(--overlay),
-    linear-gradient(262deg, var(--shell-a) 0%, var(--shell-a) 62%, color-mix(in srgb, var(--shell-a) 62%, var(--shell-b)) 100%);
+    linear-gradient(262deg, var(--shell-a) 0%, var(--shell-a) 82%, color-mix(in srgb, var(--shell-a) 78%, var(--shell-b)) 100%);
   box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.16);
 }
 
@@ -525,10 +527,10 @@ button {
   color: var(--key-ink);
   background: linear-gradient(180deg, var(--key-a), var(--key-b));
   box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.55),
-    0 3px 5px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.18);
+    0 2px 0 rgba(0, 0, 0, 0.5),
+    0 2px 3px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.22);
   transition: transform 60ms, box-shadow 60ms, filter 60ms;
 }
 
@@ -567,19 +569,17 @@ button {
 .key-call,
 .key-end {
   border-radius: 10px 8px 8px 22px / 10px 8px 8px 20px;
+  color: #fff;
 }
+
+.key-call { background: linear-gradient(180deg, #4d9f5b, #28683a); }
 
 .key-end {
   border-radius: 8px 10px 22px 8px / 8px 10px 20px 8px;
+  background: linear-gradient(180deg, #bd5551, #812f32);
 }
 
-.key-call svg {
-  color: #1f9d3a;
-}
-
-.key-end svg {
-  color: #d3312b;
-}
+.key-call svg, .key-end svg { color: currentColor; }
 
 .dpad {
   grid-row: 1 / span 2;
@@ -589,8 +589,8 @@ button {
   width: 94px;
   height: 94px;
   border-radius: 50%;
-  background: conic-gradient(from 210deg, var(--trim-a), var(--trim-b), var(--trim-a), var(--trim-b), var(--trim-a));
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  background: radial-gradient(circle at 38% 28%, #59616b, #363d46 58%, #22272e 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.42), inset 0 2px 5px rgba(0, 0, 0, 0.56), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .dpad-dir {
@@ -600,14 +600,17 @@ button {
   justify-content: center;
   width: 34px;
   height: 26px;
-  color: #232a36;
-  border-radius: 6px;
+  color: #e4e8ed;
+  border: 1px solid rgba(0, 0, 0, 0.34);
+  border-radius: 9px;
+  background: linear-gradient(145deg, #77818c, #414952);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .dpad-dir:active,
 .dpad-dir.key-down {
-  color: #000;
-  background: rgba(0, 0, 0, 0.14);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .dpad-up { top: 2px; left: 30px; }
@@ -618,7 +621,11 @@ button {
 .dpad-ok {
   position: absolute;
   inset: 26px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 50%;
+  color: #f1f3f5;
+  background: linear-gradient(145deg, #6b737d, #30363e);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   font-size: 9px;
   letter-spacing: 0.08em;
 }
@@ -630,14 +637,29 @@ button {
   right: 34px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px 9px;
+  gap: 10px 11px;
+  isolation: isolate;
+}
+
+.hs-pad::before {
+  content: '';
+  position: absolute;
+  inset: -7px -6px;
+  z-index: 0;
+  border-radius: 18px;
+  background: rgba(18, 22, 28, 0.12);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.26), 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hs-pad .key {
+  z-index: 1;
 }
 
 .key-digit {
   height: 32px;
   gap: 5px;
   border-radius: 15px / 14px;
-  text-shadow: 0 0 5px var(--led);
+  text-shadow: none;
 }
 
 /* The middle column sits a touch lower: the keypad follows the curve of the chin. */
