@@ -8,7 +8,7 @@ import { fetchNui, isEnvBrowser } from '@/nui/bridge';
 import { MOCK_SETUP, MOCK_STATE } from '@/nui/mock';
 import { setLocale } from '@/i18n';
 import {
-  closePhone, goHome, openPhone, patchState, receiveMessage, receiveOffer, setClock, showPeek, showToast, usePhone,
+  closePhone, goHome, openPhone, patchState, push, receiveMessage, receiveOffer, setClock, showPeek, showToast, usePhone,
 } from '@/store/phone';
 import type { Clock, MessagePayload, OfferPayload, PhoneState, Setup } from '@/store/types';
 
@@ -28,7 +28,14 @@ export default function App() {
   const shell = usePhone(s => s.state?.phone.shell ?? 'graphite');
   const peekTimer = useRef(0);
   const capture = useMemo(() => {
-    const m = isEnvBrowser() ? /^#prop(back)?=(\w+)$/.exec(window.location.hash) : null;
+    if (!isEnvBrowser()) return null;
+
+    // #shot=<colour>:<screen>[:<argument>] is the same flat handset on any screen, with the
+    // sample data left in, for the pictures in the README.
+    const shot = /^#shot=(\w+):(\w+)(?::([\w-]+))?$/.exec(window.location.hash);
+    if (shot) return { back: false, shell: shot[1], screen: shot[2], arg: shot[3] };
+
+    const m = /^#prop(back)?=(\w+)$/.exec(window.location.hash);
     return m ? { back: Boolean(m[1]), shell: m[2] } : null;
   }, []);
 
@@ -83,6 +90,13 @@ export default function App() {
 
     // tools/build_prop.py captures the handset from here: #prop=<colour> is the face,
     // #propback=<colour> the back, both flat, at rest and with nothing animating.
+    if (capture?.screen) {
+      openPhone({ ...MOCK_STATE, phone: { ...MOCK_STATE.phone, shell: capture.shell } }, MOCK_SETUP, { h: 21, m: 47 });
+      usePhone.setState({ booted: true });
+      if (capture.screen !== 'idle') push(capture.screen, capture.arg ? { number: capture.arg } : undefined);
+      return;
+    }
+
     if (capture) {
       openPhone(
         { ...MOCK_STATE, phone: { ...MOCK_STATE.phone, shell: capture.shell }, threads: [], hustle: { ...MOCK_STATE.hustle!, mode: 'idle' } },
