@@ -7,7 +7,8 @@ tools/art/tex_*.png
 
 __pycache__/
 *.pyc
-
 # The built handset page. Each release builds it into its zip (.github/workflows/release.yml); to
-# run a clone, `npm run build` in web/.
+# run a clone, `npm run build` in `web/`.
 web/build/
+
+web/bun.lock

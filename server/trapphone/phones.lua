@@ -737,7 +737,7 @@ end)
 
 lib.callback.register('sd-trapphone:server:submitScore', function(src, game, score)
     local phone = phones.current(src)
-    if not phone or type(game) ~= 'string' or #game > 16 or type(score) ~= 'number' then return false end
+    if not phone or game ~= 'worm' or type(score) ~= 'number' or score ~= score then return false end
 
     score = math.floor(math.max(0, math.min(999999, score)))
 

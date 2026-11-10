@@ -913,6 +913,14 @@ button {
   opacity: 0.72;
 }
 
+.messages-list .row-sub {
+  display: -webkit-box;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .row-right {
   flex: none;
   font-size: 13px;
@@ -1059,6 +1067,9 @@ button {
   gap: 6px;
   font-weight: 600;
 }
+
+.ticket-line span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.ticket-line span:last-child { flex: none; }
 
 .ticket-meta {
   display: flex;

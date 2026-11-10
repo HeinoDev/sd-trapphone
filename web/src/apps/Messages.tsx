@@ -48,7 +48,9 @@ export function Messages() {
 
   return (
     <Frame title={t('ui.app.messages')} softL={threads.length ? t('ui.open') : ''} softR={t('ui.back')}>
-      <List rows={rows} index={nav.index} onPick={i => { nav.setIndex(i); open(i); }} empty={t('ui.messages.empty')} />
+      <div className="messages-list">
+        <List rows={rows} index={nav.index} onPick={i => { nav.setIndex(i); open(i); }} empty={t('ui.messages.empty')} />
+      </div>
     </Frame>
   );
 }
