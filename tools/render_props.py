@@ -31,9 +31,7 @@ def lit_screen(mat, image):
 
 def plastic(mat):
     bsdf = next(n for n in mat.node_tree.nodes if n.type == 'BSDF_PRINCIPLED')
-    bsdf.inputs['Roughness'].default_value = 0.32
-    if 'Coat Weight' in bsdf.inputs:
-        bsdf.inputs['Coat Weight'].default_value = 0.35
+    bsdf.inputs['Roughness'].default_value = 0.5   # soft plastic: a sheen, not a mirror of the lamps
 
 
 def look_at(ob, target):
@@ -81,7 +79,7 @@ def main(out):
         sc.collection.objects.link(cam)
         sc.camera = cam
 
-        for loc, power, size in (((-0.5, -0.7, 0.6), 15.0, 0.9), ((0.6, -0.5, 0.3), 6.0, 0.7), ((0.0, 0.8, 0.5), 9.0, 0.9)):
+        for loc, power, size in (((-0.45, -0.9, 0.18), 9.0, 1.2), ((0.6, -0.7, 0.05), 5.0, 1.0), ((0.0, 0.9, 0.2), 8.0, 1.2)):
             lamp = bpy.data.objects.new("render_lamp", bpy.data.lights.new("render_lamp", 'AREA'))
             lamp.data.energy = power
             lamp.data.size = size

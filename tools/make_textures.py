@@ -32,7 +32,7 @@ SCREEN = (38, 76, 266, 364)   # the display on the 304 x 716 page, left, top, ri
 
 # Game lighting lifts a bright albedo a long way. The plastic is pulled down so a white phone
 # is not a glowing one; the display is left alone, it is drawn with an emissive shader.
-BODY_GAIN = 0.84
+BODY_GAIN = 0.76
 
 
 def compose(colour):

@@ -436,6 +436,47 @@ button {
   filter: none;
 }
 
+/* The prop's texture is lit by the game, so the light painted into the on-screen handset is
+   taken back out for it: no bright top edge, no pale corner on the shell, no glare streak on
+   the lens or the display. What is left is the plastic's own colour with a gentle falloff. */
+.stage-flat .hs-body {
+  background:
+    var(--overlay),
+    linear-gradient(98deg, var(--shell-a) 0%, var(--shell-a) 62%, color-mix(in srgb, var(--shell-a) 62%, var(--shell-b)) 100%);
+  box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.16);
+}
+
+.stage-flat .handset-back .hs-body {
+  background:
+    var(--overlay),
+    linear-gradient(262deg, var(--shell-a) 0%, var(--shell-a) 62%, color-mix(in srgb, var(--shell-a) 62%, var(--shell-b)) 100%);
+  box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.16);
+}
+
+.stage-flat .hs-lens {
+  background: linear-gradient(165deg, #12151b 0%, #07090d 30%, #020304 100%);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.55);
+}
+
+.stage-flat .hs-lens::after {
+  display: none;
+}
+
+.stage-flat .screen-grid {
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.03) 0 1px, transparent 1px 3px);
+}
+
+.stage-flat .hs-ear {
+  box-shadow: none;
+}
+
+.stage-flat .key {
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.18);
+}
+
 /* Fill behind the rounded corners with the body colour, so the texture never bleeds white. */
 .stage-capture::before {
   content: '';

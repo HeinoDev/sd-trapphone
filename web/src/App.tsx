@@ -114,7 +114,7 @@ export default function App() {
 
   if (capture) {
     return (
-      <div className={`stage stage-capture shell-${capture.shell}`}>
+      <div className={`stage stage-capture shell-${capture.shell}${capture.screen ? '' : ' stage-flat'}`}>
         {capture.back ? <HandsetBack shell={capture.shell} /> : <Handset shell={capture.shell}><Display /></Handset>}
       </div>
     );
