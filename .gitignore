@@ -7,3 +7,4 @@ tools/art/tex_*.png
 
 __pycache__/
 *.pyc
+web/bun.lock
