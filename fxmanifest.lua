@@ -33,7 +33,6 @@ files {
     'shared/**.lua',
     'configs/config.lua',
     'configs/shared/**.lua',
-    'configs/client/**.lua',
     'client/**.lua',
     'locales/*.json',
     'web/build/index.html',
