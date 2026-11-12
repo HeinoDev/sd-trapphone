@@ -25,7 +25,7 @@ sd-trapphone is a keypad burner phone for FiveM that runs a street business. Pla
 ![Inventory](https://img.shields.io/badge/Inventory-auto--detected-3b82f6)
 ![Works with](https://img.shields.io/badge/Works%20with-sd--phone-3b82f6)
 
-[**Live demo**](https://fivem.samueldev.shop/trapphone) · [**Store**](https://fivem.samueldev.shop) · [**Discord**](https://discord.gg/FzPehMQaBQ)
+[**Download**](https://github.com/Samuels-Development/sd-trapphone/releases/latest) · [**Docs**](https://docs.samueldev.shop/resources/trapphone/) · [**Live demo**](https://fivem.samueldev.shop/trapphone) · [**Store**](https://fivem.samueldev.shop) · [**Discord**](https://discord.gg/FzPehMQaBQ)
 
 **Works together:** [**sd-phone**](https://github.com/Samuels-Development/sd-phone) · **sd-trapphone** · [**sd-tablet**](https://github.com/Samuels-Development/sd-tablet) · [**sd-computers**](https://github.com/Samuels-Development/sd-computers)
 
@@ -95,6 +95,11 @@ Per-phone progress needs an inventory that can store item metadata. On one that 
 
 ## Installation
 
+Download **`sd-trapphone.zip`** from the [latest release](https://github.com/Samuels-Development/sd-trapphone/releases/latest) and unzip it into your resources folder: it is the resource with its handset page already built, ready to drop in.
+
+> [!IMPORTANT]
+> Download the `sd-trapphone.zip` asset, not **Source code (zip)** or the green **Code** button. Those are the source, without the built handset: the phone would open to nothing until you [build it yourself](#building-the-handset).
+
 It needs [ox_lib](https://github.com/CommunityOx/ox_lib) and [oxmysql](https://github.com/CommunityOx/oxmysql). Start them and your framework first:
 
 ```cfg
@@ -110,13 +115,17 @@ The database tables create themselves. Then:
 
 Admins get `/trapadmin` (ace `command.trapphone`) to hand out phones, set XP, force a contact to reach out, set crew standing and reset a phone.
 
+## Documentation
+
+The full guide is at **[docs.samueldev.shop/resources/trapphone](https://docs.samueldev.shop/resources/trapphone/)**: installation, every config file, and the client and server exports with examples.
+
 ## For developers
 
-Exports for both sides, the event names and every payload shape are in [docs/design.md](docs/design.md).
+How the parts fit together, the page protocol and every payload shape are in [docs/design.md](docs/design.md).
 
 ### Building the handset
 
-The built page ships in `web/build`. To change it:
+The repository is the source: the built page (`web/build`) is not committed, and each [release](https://github.com/Samuels-Development/sd-trapphone/releases) builds it into its zip. To run a clone, or to change the page, build it with Node.js (LTS):
 
 ```bash
 cd web
@@ -125,6 +134,8 @@ npm run dev         # the handset in a browser, with sample data
 npm run build       # what the game serves (web/build)
 npm run build:demo  # the website's demo (web/build-demo): the handset alone, with a pretended street
 ```
+
+A source zip unpacks to `sd-trapphone-main`: rename the folder to `sd-trapphone`, the name its exports are called by.
 
 ### Rebuilding the props
 
